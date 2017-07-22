@@ -17,10 +17,10 @@ MongoClient.connect('mongodb://jdum66:rIc364det@ds034677.mlab.com:34677/ubiquito
 
 			{name: "Harry Potter", age: 12, sex: 'Male'},
 			{name: "Katniss Everdeen", age: 23, sex: 'Female'},
+			{name: "Spongebob Squarepants", age: 3, sex: 'Male'},
+			{name: "Harry Potter", age: 12, sex: 'Male'},
+			{name: "Katniss Everdeen", age: 23, sex: 'Female'},
 			{name: "Spongebob Squarepants", age: 3, sex: 'Male'}
-			{ name: "Harry Potter", age: 12, sex: 'Male'},
-			{ name: "Katniss Everdeen", age: 23, sex: 'Female'},
-			{ name: "Spongebob Squarepants", age: 3, sex: 'Male'}
 
 		];
 		db.collection("MissingPersons").insertMany(missingPersonArray, function(err, res) {
@@ -31,7 +31,7 @@ MongoClient.connect('mongodb://jdum66:rIc364det@ds034677.mlab.com:34677/ubiquito
 	var shelterArray = [
 	    {latitude: 233.0, longitude: -117.0, type: 'School'},
 	    {latitude: 229.0, longitude: -100.0, type: 'Gym'},
-	    {latitude: 210.0, longitude: -131.0, type: 'Church'}
+	    {latitude: 210.0, longitude: -131.0, type: 'Church'},
 	    { latitude: 233.0, longitude: -117.0, type: 'School'},
 	    { latitude: 229.0, longitude: -100.0, type: 'Gym'},
 	    { latitude: 210.0, longitude: -131.0, type: 'Church'}
@@ -52,11 +52,13 @@ app.post('/sms', function(req, res) {
 	twiml.message('The robots are coming!');
 	res.writeHead(200, {'Content-Type': 'text/xml'});
 	res.end(twiml.toString());
+	/*
 	var text = {text: "Help!", location: 220.0, longitude: -117.0};
 	db.collection('SMS').insertOne(text, function(err, res) {
 		if (err) throw err;
 		console.log(res);
-	});
+
+	}); */
 })
 
 // this reads from HTML POST call
