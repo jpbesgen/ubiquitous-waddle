@@ -34,6 +34,7 @@ MongoClient.connect('mongodb://jdum66:rIc364det@ds034677.mlab.com:34677/ubiquito
 	  });
 })
 
+
 // this is for getting the contents of the html into the database
 app.use(bodyParser.urlencoded({extended:true}))
 
