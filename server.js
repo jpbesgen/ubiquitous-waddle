@@ -62,3 +62,10 @@ app.get('/', function(req, res) {
 	console.log(__dirname)
 	res.sendFile(__dirname + '/disaster-relief.html');
 })
+
+app.get('/missingPersons', function(req, res) {
+	db.collection('missingPersons').find().toArray(function(err, results) {
+		console.log(results);
+		res.json(collection);
+	});
+})
