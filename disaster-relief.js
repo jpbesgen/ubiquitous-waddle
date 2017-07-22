@@ -213,7 +213,7 @@ function missingPersons() {
 
     var infowindow = new google.maps.InfoWindow();
 
-    for(i = 0; i < locations.length; i++) {
+    for(i = 0; i < people.length; i++) {
         marker = new google.maps.Marker({
             position: people[i].position,
             map: map,
