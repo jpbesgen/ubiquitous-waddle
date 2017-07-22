@@ -1,27 +1,6 @@
 
       var map, heatmap;
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
-          center: {lat: 37.775, lng: -122.434},
-          mapTypeId: 'satellite'
-        });
-
-        //heatmap = new google.maps.visualization.HeatmapLayer({
-          //data: getPoints(),
-          //map: map
-        //});
-
-
-        
-      }
-
-
-      function toggleHeatmap() {
-
-
-          var a = {
+       var a = {
           lat: 37.80069678,
           long: -122.4416399
      };
@@ -84,14 +63,30 @@
       [i.lat, i.long, 9],
     ];
 
-     var map = new google.maps.Map(document.getElementById('map'), {
+    var icons = {
+          face: {
+            icon:  'picture.png'
+          }         
+        };
+
+      
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
           zoom: 14,
-          center: new google.maps.LatLng(37.78516462, -122.42112637),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-     });
+          center: {lat: 37.78516462, lng: -122.42112637},
+          mapTypeId: 'satellite'
+        });     
+  
+      }
 
+
+      function availableShelters() {    
+      var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: {lat: 37.78516462, lng: -122.42112637}
+        });   
      
-
      var marker, i;
 
      for (i = 0; i < locations.length; i++) {
@@ -106,39 +101,63 @@
         
       }
 
-      function changeGradient() {
-        var gradient = [
-          'rgba(0, 255, 255, 0)',
-          'rgba(0, 255, 255, 1)',
-          'rgba(0, 191, 255, 1)',
-          'rgba(0, 127, 255, 1)',
-          'rgba(0, 63, 255, 1)',
-          'rgba(0, 0, 255, 1)',
-          'rgba(0, 0, 223, 1)',
-          'rgba(0, 0, 191, 1)',
-          'rgba(0, 0, 159, 1)',
-          'rgba(0, 0, 127, 1)',
-          'rgba(63, 0, 91, 1)',
-          'rgba(127, 0, 63, 1)',
-          'rgba(191, 0, 31, 1)',
-          'rgba(255, 0, 0, 1)'
-        ]
-        heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+      function aidDistribution() {
+       
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: {lat: 37.78516462, lng: -122.42112637}
+        });
+
+        var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
+
       }
 
-      function changeRadius() {
-        heatmap.set('radius', heatmap.get('radius') ? null : 30);
+      function Heatmap() {
+       
+var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: {lat: 37.78516462, lng: -122.42112637}
+        });
+           heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+         });         
+
+           // map.setMap(map.getMap() ? null : map);
+        //heatmap.set('radius', heatmap.get('radius') ? null : 30);
       }
 
-      function changeOpacity() {
-        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
-      }
+      function missingPersons() {
+        //heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2)
 
 
+        var people = [
+          {
+            position: new google.maps.LatLng(37.78719958, -122.42970943),
+            type: 'face'
+          }, {
+            position: new google.maps.LatLng(37.78862403, -122.41477489),
+            type: 'face'
+          }, {
+            position: new google.maps.LatLng(37.80381638,-122.41125584),
+            type: 'face'
+          }, {
+            position: new google.maps.LatLng(37.80056114, -122.42112637),
+            type: 'face'
+          }]
 
+ 
+   
 
+        
+     }
+       
+      
 
-    
+      
+
+ 
 
       // Heatmap data: 500 Points
       function getPoints() {
