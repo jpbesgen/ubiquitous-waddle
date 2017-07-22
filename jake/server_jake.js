@@ -32,9 +32,9 @@ MongoClient.connect('mongodb://<dbuser>:<dbpassword>@ds034677.mlab.com:34677/ubi
     console.log("listening on 3000");
   })
   var missingPersonArray = [
-      { _id: 210, name: "Harry Potter", age: 12, sex: 'Male'},
-      { _id: 211, name: "Katniss Everdeen", age: 23, sex: 'Female'},
-      { _id: 212, name: "Spongebob Squarepants", age: 3, sex: 'Male'}
+      { name: "Harry Potter", age: 12, sex: 'Male'},
+      { name: "Katniss Everdeen", age: 23, sex: 'Female'},
+      { name: "Spongebob Squarepants", age: 3, sex: 'Male'}
     ];
     db.collection("missingPersons").insertMany(missingPersonArray, function(err, res) {
       if (err) throw err;
