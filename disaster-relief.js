@@ -51,23 +51,17 @@
      };
 
 
-     var locations = [
-      [a.lat, a.long, 0],
-      [b.lat, b.long, 1],
-      [c.lat, c.long, 2],
-      [d.lat, d.long, 3],
-      [e.lat, e.long, 5],
-      [f.lat, f.long, 6],
-      [g.lat, g.long, 7],
-      [h.lat, h.long, 8],
-      [i.lat, i.long, 9],
+     var shelters = [
+      [a.lat, a.long, "Shelter 1"],
+      [b.lat, b.long, "Shelter 2"],
+      [c.lat, c.long, "Shelter 3"],
+      [d.lat, d.long, "Shelter 4"],
+      [e.lat, e.long, "Shelter 5"],
+      [f.lat, f.long, "Shelter 6"],
+      [g.lat, g.long, "Shelter 7"],
+      [h.lat, h.long, "Shelter 8"],
+      [i.lat, i.long, "Shelter 9"],
     ];
-
-    var icons = {
-          face: {
-            icon:  'picture.png'
-          }         
-        };
 
       
 
@@ -88,12 +82,23 @@
         });   
      
      var marker, i;
+     var infowindow = new google.maps.InfoWindow();
 
-     for (i = 0; i < locations.length; i++) {
+     for (i = 0; i < shelters.length; i++) {
           marker = new google.maps.Marker({
-               position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+               position: new google.maps.LatLng(shelters[i][0], shelters[i][1]),
                map: map
           });
+    var content = '<div id="content">'+
+            '<h1 id="firstHeading" class="firstHeading">'+shelters[i][2]+'</h1>'+
+            '</div>';
+          
+          google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+        return function() {
+           infowindow.setContent(content);
+           infowindow.open(map,marker);
+        };
+    })(marker,content,infowindow));
 
         
      }
