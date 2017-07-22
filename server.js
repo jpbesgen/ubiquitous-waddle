@@ -14,9 +14,9 @@ MongoClient.connect('mongodb://jdum66:rIc364det@ds034677.mlab.com:34677/ubiquito
 		console.log('Express server listening on port 1337');
 	})
 	var missingPersonArray = [
-			{ _id: 210, name: "Harry Potter", age: 12, sex: 'Male'},
-			{ _id: 211, name: "Katniss Everdeen", age: 23, sex: 'Female'},
-			{ _id: 212, name: "Spongebob Squarepants", age: 3, sex: 'Male'}
+			{name: "Harry Potter", age: 12, sex: 'Male'},
+			{name: "Katniss Everdeen", age: 23, sex: 'Female'},
+			{name: "Spongebob Squarepants", age: 3, sex: 'Male'}
 		];
 		db.collection("MissingPersons").insertMany(missingPersonArray, function(err, res) {
 			if (err) throw err;
@@ -24,9 +24,9 @@ MongoClient.connect('mongodb://jdum66:rIc364det@ds034677.mlab.com:34677/ubiquito
 			db.close();
 		});
 	var shelterArray = [
-	    { _id: 160, latitude: 233.0, longitude: -117.0, type: 'School'},
-	    { _id: 161, latitude: 229.0, longitude: -100.0, type: 'Gym'},
-	    { _id: 162, latitude: 210.0, longitude: -131.0, type: 'Church'}
+	    {latitude: 233.0, longitude: -117.0, type: 'School'},
+	    {latitude: 229.0, longitude: -100.0, type: 'Gym'},
+	    {latitude: 210.0, longitude: -131.0, type: 'Church'}
 	  ];
 	  db.collection("Shelters").insertMany(shelterArray, function(err, res) {
 	    if (err) throw err;
