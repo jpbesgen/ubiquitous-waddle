@@ -7,13 +7,15 @@ const mongoClient = require('mongodb').MongoClient;
 var db;
 var app = express();
 
-MongoClient.connect('mongodb://<dbuser>:<dbpassword>@ds034677.mlab.com:34677/ubiquitous-waddle', function(err, database) {
+
+mongoClient.connect('mongodb://jdum66:rIc364det@ds034677.mlab.com:34677/ubiquitous-waddle', function(err, database) {
 	if (err) return console.log(err)
 	db = database;
 	app.listen(1337, function() {
 		console.log('Express server listening on port 1337');
 	})
 })
+
 
 // this is for getting the contents of the html into the database
 app.use(bodyParser.urlencoded({extended:true}))
