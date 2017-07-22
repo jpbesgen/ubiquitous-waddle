@@ -135,25 +135,64 @@ var map = new google.maps.Map(document.getElementById('map'), {
         var people = [
           {
             position: new google.maps.LatLng(37.78719958, -122.42970943),
-            type: 'face'
+            image:"https://static-cdn.jtvnw.net/jtv_user_pictures/bobross-profile_image-0b9dd167a9bb16b5-300x300.jpeg",
+            name: "Bob Ross"
           }, {
             position: new google.maps.LatLng(37.78862403, -122.41477489),
-            type: 'face'
+            image:"http://cssf.usc.edu/History/2016/pictures/Portrait/images/41081.jpg",
+            name: "Alisa Hathaway"
           }, {
             position: new google.maps.LatLng(37.80381638,-122.41125584),
-            type: 'face'
+            image:"http://pvphs.pvpusd.net/apps/download/fjpS6lgLXB4mojzWSjlz8RDwoOlmK3Jpysl3GrLSdQGVQty4.jpg/starodub.JPG",
+            name: "Peter Starodub"
           }, {
             position: new google.maps.LatLng(37.80056114, -122.42112637),
-            type: 'face'
+            image:"https://images-na.ssl-images-amazon.com/images/M/MV5BMTg4NTExODc3Nl5BMl5BanBnXkFtZTgwODUyMDEzMDE@._V1_UY317_CR11,0,214,317_AL_.jpg",
+            name: "Daniel Radcliffe"
           }]
 
+ var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: {lat: 37.78516462, lng: -122.42112637}
+        });
+        
+        var marker, i;
+        
+        
+        var infowindow = new google.maps.InfoWindow();
+
+     for (i = 0; i < locations.length; i++) {
+          marker = new google.maps.Marker({
+               position: people[i].position,
+               map: map,
+               icon:"picture.png",
+               animation: google.maps.Animation.DROP,
+          });
+          var content = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Missing Person</h1>'+
+            '<img src ="' + people[i].image +'" style="max-height:120px;"/>' +
+            '<div id="bodyContent">'+
+            '<p><b>'+ people[i].name +'</b> is classified as <b>missing</b>, last seen at ' +
+            'this location.</p>'+
+            '</div>'+
+            '</div>';
+          
+          google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+        return function() {
+           infowindow.setContent(content);
+           infowindow.open(map,marker);
+        };
+    })(marker,content,infowindow));
+          }
  
+ 		
    
 
         
      }
        
-      
 
       
 
