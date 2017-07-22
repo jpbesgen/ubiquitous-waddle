@@ -121,6 +121,7 @@ function addShelter(){
 }
 
 function placeMarker(location) {
+	if(mode != 1){google.maps.event.removeListener(nListener); return false;}
 	var tag = prompt("Enter shelter name tag", "Shelter X");
 	if(tag != null){
 	var content = '<div id="content">' +
