@@ -3,19 +3,107 @@
 
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
+          zoom: 14,
           center: {lat: 37.775, lng: -122.434},
           mapTypeId: 'satellite'
         });
 
-        heatmap = new google.maps.visualization.HeatmapLayer({
-          data: getPoints(),
-          map: map
-        });
+        //heatmap = new google.maps.visualization.HeatmapLayer({
+          //data: getPoints(),
+          //map: map
+        //});
+
+
+        
       }
 
+
       function toggleHeatmap() {
-        heatmap.setMap(heatmap.getMap() ? null : map);
+
+
+          var a = {
+          lat: 37.80069678,
+          long: -122.4416399
+     };
+
+     var b = {
+         
+          lat: 37.78882752,
+          long: -122.42490292
+     };
+
+     var c = {
+         
+          lat: 37.77451404,
+          long: -122.42138386
+     };
+
+      var d = {
+          lat: 37.78102668,
+          long: -122.43511677
+     };
+
+     var e = {
+         
+          lat: 37.78082317,
+          long: -122.40722179
+     };
+
+     var f = {
+         
+          lat: 37.80571521,
+          long: -122.42867947
+     };
+ var g = {
+          lat: 37.7885562,
+          long: -122.40516186
+     };
+
+     var h = {
+         
+          lat: 37.78957364,
+          long: -122.42833614
+     };
+
+     var i = {
+         
+          lat: 37.78882752,
+          long: -122.4156332
+     };
+
+
+     var locations = [
+      [a.lat, a.long, 0],
+      [b.lat, b.long, 1],
+      [c.lat, c.long, 2],
+      [d.lat, d.long, 3],
+      [e.lat, e.long, 5],
+      [f.lat, f.long, 6],
+      [g.lat, g.long, 7],
+      [h.lat, h.long, 8],
+      [i.lat, i.long, 9],
+    ];
+
+     var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: new google.maps.LatLng(37.78516462, -122.42112637),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+     });
+
+     
+
+     var marker, i;
+
+     for (i = 0; i < locations.length; i++) {
+          marker = new google.maps.Marker({
+               position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+               map: map
+          });
+
+        
+     }
+       
+        
       }
 
       function changeGradient() {
@@ -39,12 +127,18 @@
       }
 
       function changeRadius() {
-        heatmap.set('radius', heatmap.get('radius') ? null : 20);
+        heatmap.set('radius', heatmap.get('radius') ? null : 30);
       }
 
       function changeOpacity() {
         heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
       }
+
+
+
+
+
+    
 
       // Heatmap data: 500 Points
       function getPoints() {
