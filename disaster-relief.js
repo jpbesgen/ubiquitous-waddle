@@ -1,4 +1,5 @@
 var map, heatmap, nListener, mode = 1;
+var addedshelters;
 var a = {
     lat: 37.80069678,
     long: -122.4416399
@@ -140,7 +141,7 @@ function placeMarker(location) {
                 infowindow.open(map, marker);
             };
         })(marker, content, infowindow));
-    
+    shelters[shelters.length] = [location.lat(), location.lng(), tag];
     }
     google.maps.event.removeListener(nListener);
 }
