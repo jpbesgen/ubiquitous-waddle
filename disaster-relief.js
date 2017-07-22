@@ -1,4 +1,4 @@
-var map, heatmap;
+var map, heatmap, nListener, mode = 1;
 var a = {
     lat: 37.80069678,
     long: -122.4416399
@@ -65,6 +65,7 @@ var shelters = [
 
 
 function initMap() {
+	mode = 0;
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 14,
         center: {
@@ -78,7 +79,8 @@ function initMap() {
 
 
 function availableShelters() {
-    var map = new google.maps.Map(document.getElementById('map'), {
+	mode = 1;
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
         center: {
             lat: 37.78516462,
@@ -111,9 +113,40 @@ function availableShelters() {
 
 }
 
-function aidDistribution() {
+function addShelter(){
+	if(mode == 1){
+	google.maps.event.removeListener(nListener);
+	nListener = google.maps.event.addListener(map, 'click', function(event) {placeMarker(event.latLng);});}
+	else {alert("Can only be done from Shelter tab.");}
+}
 
-    var map = new google.maps.Map(document.getElementById('map'), {
+function placeMarker(location) {
+	var tag = prompt("Enter shelter name tag", "Shelter X");
+	if(tag != null){
+	var content = '<div id="content">' +
+            '<h1 id="firstHeading" class="firstHeading">' + tag + '</h1>' +
+            '</div>';
+	
+	
+    var marker = new google.maps.Marker({
+        position: location, 
+        map: map
+    });
+    var infowindow = new google.maps.InfoWindow();
+    google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+            return function() {
+                infowindow.setContent(content);
+                infowindow.open(map, marker);
+            };
+        })(marker, content, infowindow));
+    
+    }
+    google.maps.event.removeListener(nListener);
+}
+
+function aidDistribution() {
+	mode = 2;
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
         center: {
             lat: 37.78516462,
@@ -127,8 +160,8 @@ function aidDistribution() {
 }
 
 function Heatmap() {
-
-    var map = new google.maps.Map(document.getElementById('map'), {
+	mode = 3;
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
         center: {
             lat: 37.78516462,
@@ -147,7 +180,7 @@ function Heatmap() {
 function missingPersons() {
     //heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2)
 
-
+	mode = 4;
     var people = [{
         position: new google.maps.LatLng(37.78719958, -122.42970943),
         image: "https://static-cdn.jtvnw.net/jtv_user_pictures/bobross-profile_image-0b9dd167a9bb16b5-300x300.jpeg",
@@ -166,7 +199,7 @@ function missingPersons() {
         name: "Daniel Radcliffe"
     }]
 
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
         center: {
             lat: 37.78516462,
