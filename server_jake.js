@@ -15,6 +15,7 @@ app.get('/', function(req, res) {
 // this is for rendering the return values from the database into the html
 app.set('view engine', 'ejs');
 
+// this is for getting the contents of the html into the database
 app.use(bodyParser.urlencoded({extended:true}))
 
 MongoClient.connect('mongodb://<dbuser>:<dbpassword>@ds034677.mlab.com:34677/ubiquitous-waddle', function(err, database) {
@@ -28,6 +29,26 @@ MongoClient.connect('mongodb://<dbuser>:<dbpassword>@ds034677.mlab.com:34677/ubi
 // this reads from HTML POST call
 app.post('/shelters', function(req, res) {
   db.collection('shelters').save(req.body, function(err, result) {
+    if (err) return console.log(err)
+
+    console.log('saved to database')
+    res.redirect('/')
+  })
+})
+
+// this reads from HTML POST call
+app.post('/missingPersons', function(req, res) {
+  db.collection('missingPersons').save(req.body, function(err, result) {
+    if (err) return console.log(err)
+
+    console.log('saved to database')
+    res.redirect('/')
+  })
+})
+
+// this reads from HTML POST call
+app.post('/hazards', function(req, res) {
+  db.collection('hazards').save(req.body, function(err, result) {
     if (err) return console.log(err)
 
     console.log('saved to database')
