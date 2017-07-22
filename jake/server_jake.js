@@ -12,6 +12,13 @@ app.get('/', function(req, res) {
   var cursor = db.collection('quotes').find();
 })
 
+app.get('/missingPersons', function(req, res) {
+  db.collection('missingPersons').find().toArray(function(err, results) {
+    console.log(results);
+    res.json(collection);
+  });
+})
+
 // this is for rendering the return values from the database into the html
 app.set('view engine', 'ejs');
 
@@ -24,6 +31,17 @@ MongoClient.connect('mongodb://<dbuser>:<dbpassword>@ds034677.mlab.com:34677/ubi
   app.listen(3000, function() {
     console.log("listening on 3000");
   })
+  var missingPersonArray = [
+      { _id: 210, name: "Harry Potter", age: 12, sex: 'Male'},
+      { _id: 211, name: "Katniss Everdeen", age: 23, sex: 'Female'},
+      { _id: 212, name: "Spongebob Squarepants", age: 3, sex: 'Male'}
+    ];
+    db.collection("missingPersons").insertMany(missingPersonArray, function(err, res) {
+      if (err) throw err;
+      console.log(res);
+      db.close();
+    });
+  });
 })
 
 // this reads from HTML POST call
